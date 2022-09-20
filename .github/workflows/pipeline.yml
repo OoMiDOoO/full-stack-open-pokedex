@@ -1,14 +1,10 @@
 name: Deployment pipeline
 
+# will this work?
 on:
   push:
     branches:
-      - master
-      # note that your "main" branch might be called main instead of master
-  pull_request:
-    branches: [master]
-    # sync = update
-    types: [opened, synchronize] 
+      - kalle-tries
 
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
@@ -35,7 +31,6 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
-      if: ${{ github.event_name == 'push' }}
       - name: Deploy app to flyio
         uses: superfly/flyctl-actions/setup-flyctl@master # Need to checkout repo before this.
         run: flyctl deploy --remote-only
