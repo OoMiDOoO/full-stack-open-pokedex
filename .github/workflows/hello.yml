@@ -10,31 +10,29 @@ on:
     types: [opened, synchronize] 
 
 jobs:
-  a_test_job:
+  # a_test_job:
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: '0'
+  #     - name: github context
+  #       env:
+  #         GITHUB_CONTEXT: ${{ toJson(github) }}
+  #       run: echo "$GITHUB_CONTEXT"
+  #     - name: commits
+  #       env:
+  #         COMMITS: ${{ toJson(github.event.commits) }}
+  #       run: echo "$COMMITS"
+  #     - name: commit messages 
+  #       env:
+  #         COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+  #       run: echo "$COMMIT_MESSAGES"
+  anotherTestJob:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-      - name: github context
+      - name: echo 
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: commits
-        env:
-          COMMITS: ${{ toJson(github.event.commits) }}
-        run: echo "$COMMITS"
-      - name: commit messages 
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        run: echo "$COMMIT_MESSAGES"
-  does_it_contain_skip: # Both of these work, need to add them to pipeline.yml
-    if: ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
-    runs-on: ubuntu-20.04
-    steps:
-      - run: echo "Does not contain"
-  it_does_contain_skip:
-    if: ${{ contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
-    runs-on: ubuntu-20.04
-    steps:
-      - run: echo "Does contain skip"
+          senderObj: ${{ toJson(github.sender) }}
+          commitDetails: ${{ toJson(github.head_commit) }} 
+        run: echo "$senderObj.avatar_url"
