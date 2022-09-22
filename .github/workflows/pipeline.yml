@@ -41,7 +41,7 @@ jobs:
             username: ${{ github.sender.login }}
             avatarUrl: ${{ github.sender.avatar_url }}
             text: Something in PreDeployChecks faield!
-            descripton: ${{ github.head_commit.message }}
+            description: ${{ github.head_commit.message }}
             details: ${{ github.head_commit.url }}
             footer: ${{ github.head_commit.timestamp }}
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
