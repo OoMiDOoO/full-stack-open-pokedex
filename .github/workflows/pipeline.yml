@@ -64,9 +64,9 @@ jobs:
         if: success()
         with:
           severity: info
-          username: ${{ github.sender.login }}
+          username: ${{ github.event.sender.login }}
           color: '#00ff00'
-          avatarUrl: ${{ github.sender.avatar_url }}
+          avatarUrl: ${{ github.event.sender.avatar_url }}
           text: App successfully deployed!
           description: ${{ github.head_commit.message }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
