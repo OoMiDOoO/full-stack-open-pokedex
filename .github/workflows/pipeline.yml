@@ -38,12 +38,7 @@ jobs:
         if: failure()
         with:
           severity: error
-          username: ${{ github.sender.login }}
-          avatarUrl: ${{ github.sender.avatar_url }}
-          text: Something in PreDeployChecks faield!
-          description: ${{ github.head_commit.message }}
-          details: ${{ github.head_commit.url }}
-          footer: ${{ github.head_commit.timestamp }}
+          details: Something at PreDeploymentChecks failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   DeployToFlyio:
     if: |

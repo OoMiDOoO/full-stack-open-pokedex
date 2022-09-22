@@ -35,4 +35,4 @@ jobs:
         env:
           senderObj: ${{ toJson(github.sender) }}
           commitDetails: ${{ toJson(github.head_commit) }} 
-        run: echo "$senderObj.avatar_url"
+        run: echo "$senderObj"
