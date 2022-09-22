@@ -1,0 +1,22 @@
+name: Periodic Health Checking
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 8 * * *' # See: crontab.guru
+
+jobs:
+  Failing_Job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check for not heathy route
+        uses: jtalk/url-health-check-action@v2
+        with:
+          url: https://young-frost-5915.fly.dev/notHealth
+  Success_Job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check for healthy route
+        uses: jtalk/url-health-check-action@v2
+        with:
+          url: https://young-frost-5915.fly.dev/health
