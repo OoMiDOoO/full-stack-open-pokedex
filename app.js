@@ -11,13 +11,13 @@ app.get('/health', (req, res) => {
   res.send('ok')
 })
 
+app.get('/notHealth', (req, res) => {
+  res.status(404).send()
+})
+
 app.get('/version', (req, res) => {
   res.send('v1')
 })
-
-// Trying to cancel test to see if would work.....
-// change1
-// change2
 
 app.listen(PORT, () => {
   console.log('server started on port 5000')
