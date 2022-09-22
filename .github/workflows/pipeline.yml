@@ -37,14 +37,14 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         if: failure()
         with:
-            severity: error
-            username: ${{ github.sender.login }}
-            avatarUrl: ${{ github.sender.avatar_url }}
-            text: Something in PreDeployChecks faield!
-            description: ${{ github.head_commit.message }}
-            details: ${{ github.head_commit.url }}
-            footer: ${{ github.head_commit.timestamp }}
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          severity: error
+          username: ${{ github.sender.login }}
+          avatarUrl: ${{ github.sender.avatar_url }}
+          text: Something in PreDeployChecks faield!
+          description: ${{ github.head_commit.message }}
+          details: ${{ github.head_commit.url }}
+          footer: ${{ github.head_commit.timestamp }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   DeployToFlyio:
     if: |
       github.event_name == 'push' && 
@@ -68,8 +68,10 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         if: success()
         with:
-            severity: info
-            username: ${{ github.sender.login }}
-            details: Deployment to Flyio Succeeded!
-            text: ${{ github.head_commit.url }}
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          severity: info
+          username: ${{ github.sender.login }}
+          color: '#00ff00'
+          avatarUrl: ${{ github.sender.avatar_url }}
+          text: App successfully deployed!
+          description: ${{ github.head_commit.message }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
